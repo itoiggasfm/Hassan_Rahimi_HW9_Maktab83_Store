@@ -25,19 +25,46 @@ public class ProductService {
             System.out.println("No product");
         }
         else{
-            int No =0;
-            System.out.printf("%nNo  ID     Name               Price       Product type     Exists/Not exist");
-            System.out.printf("%n---------------------------------------------------------------");
-            for(Product product: allProducts){
+            boolean electronicExist = false;
+            boolean shoeExist = false;
+            boolean printedMatterExist = false;
+            for (Product product: allProducts)
+                if(product.getProductType().equals(ProductType.ELECTRONIC)){
+                    electronicExist = true;
+                    break;
+                }
+                for (Product product: allProducts)
+                if(product.getProductType().equals(ProductType.SHOE)){
+                    shoeExist = true;
+                    break;
+                }
+                for (Product product: allProducts)
+                if(product.getProductType().equals(ProductType.PRINTED_MATTER)){
+                    printedMatterExist = true;
+                    break;
+                }
+
+            System.out.printf("%nNo     Name               Price       Product type     Exists/Not exist");
+        if(electronicExist){
+            System.out.printf("%n%n%s  Electronic goods     ------------------------------------------------", "\u21DB");
+            for(Product product: allProducts)
                 if(product.getProductType().equals(ProductType.ELECTRONIC))
-                    System.out.printf("%n%-4d%-7d%-19s%-12.0f%-17s%-16s", ++No,  product.getId(), product.getName(), product.getPrice(), product.getProductType(), (product.getQuantity()>0?"Exists":"Not exist"));
-                else if(product.getProductType().equals(ProductType.SHOE))
-                    System.out.printf("%n%-4d%-7d%-19s%-12.0f%-17s%-16s", ++No,  product.getId(), product.getName(), product.getPrice(), product.getProductType(), (product.getQuantity()>0?"Exists":"Not exist"));
-                else
-                    System.out.printf("%n%-4d%-7d%-19s%-12.0f%-17s%-16s", ++No,  product.getId(), product.getName(), product.getPrice(), product.getProductType(), (product.getQuantity()>0?"Exists":"Not exist"));
-            }
-            System.out.println("\n===============================================================");
+                    System.out.printf("%n%-7d%-19s%-12.0f%-17s%-16s",  product.getId(), product.getName(), product.getPrice(), product.getProductType(), (product.getQuantity()>0?"Exists":"Not exist"));
         }
+            if(shoeExist){
+                System.out.printf("%n%n%s  SHOE     ------------------------------------------------------------", "\u21DB");
+                for(Product product: allProducts)
+                    if(product.getProductType().equals(ProductType.SHOE))
+                        System.out.printf("%n%-7d%-19s%-12.0f%-17s%-16s",  product.getId(), product.getName(), product.getPrice(), product.getProductType(), (product.getQuantity()>0?"Exists":"Not exist"));
+            }
+            if(printedMatterExist){
+                System.out.printf("%n%n%s  PRINTED MATTER     --------------------------------------------------", "\u21DB");
+                for(Product product: allProducts)
+                    if(product.getProductType().equals(ProductType.PRINTED_MATTER))
+                        System.out.printf("%n%-7d%-19s%-12.0f%-17s%-16s",  product.getId(), product.getName(), product.getPrice(), product.getProductType(), (product.getQuantity()>0?"Exists":"Not exist"));
+            }
+            }
+            System.out.println("\n\n========================================================================");
         return allProducts;
     }
 //    ---------------------------------------------------------------------

@@ -484,7 +484,7 @@ public class Menu {
                 case "6":{
                     // List<Product> productsList= products();
                     System.out.printf("%nID     Name               Price     Quantity     Product type");
-                    System.out.printf("%n---------------------------------------------------");
+                    System.out.printf("%n-------------------------------------------------------------");
                     for (Product product: productsList)
                         System.out.printf("%n%-7d%-19s%-10.0f%-13d%-15s",product.getId(), product.getName(), product.getPrice(), product.getQuantity(), product.getProductType().toString());
                 }
